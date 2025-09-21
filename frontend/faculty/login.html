@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faculty Login - ClassFlow</title>
+    <link rel="stylesheet" href="../assets/css/login.css">
+</head>
+<body>
+    <div class="login-container">
+        <div class="header">
+            <div class="logo-icon">👨‍🏫</div>
+            <h1>Faculty Login</h1>
+            <p>Access your teaching dashboard</p>
+        </div>
+        
+        <form id="facultyLoginForm">
+            <div id="errorMessage" class="message error-message"></div>
+            <div id="successMessage" class="message success-message"></div>
+            
+            <div class="form-group">
+                <label for="facultyId">Faculty ID:</label>
+                <input type="text" id="facultyId" placeholder="Enter your faculty ID (e.g., FAC001)" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" placeholder="Enter your password" required>
+            </div>
+            
+            <button type="submit" class="login-btn" id="loginBtn">Sign In</button>
+        </form>
+        
+        <div class="demo-info">
+            <h3>Demo Faculty Accounts:</h3>
+            <p>ID: FAC001 | Password: faculty123 | Dr. Sharma (CSE)</p>
+            <p>ID: FAC002 | Password: faculty123 | Prof. Singh (Physics)</p>
+            <p>ID: FAC003 | Password: faculty123 | Dr. Patel (Mathematics)</p>
+        </div>
+        
+        <div class="back-link">
+            <a href="../index.html">← Back to Home</a>
+        </div>
+    </div>
+    
+    <script src="../assets/js/faculty-login.js"></script>
+</body>
+</html>

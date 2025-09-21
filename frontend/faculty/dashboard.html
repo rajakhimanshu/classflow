@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faculty Dashboard - Smart Attendance System</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/faculty-dashboard.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <i class="fas fa-graduation-cap"></i>
+                <span>Smart Attendance</span>
+            </div>
+            <div class="user-info">
+                <div class="notifications">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-count">3</span>
+                </div>
+                <div class="user-profile">
+                    <div class="user-avatar">
+                        <span id="userInitials">JD</span>
+                    </div>
+                    <div class="user-details">
+                        <span class="user-name">Dr. John Doe</span>
+                        <span class="user-role">Professor</span>
+                    </div>
+                    <div class="user-dropdown">
+                        <i class="fas fa-chevron-down"></i>
+                        <div class="dropdown-menu">
+                            <a href="#profile"><i class="fas fa-user"></i> Profile</a>
+                            <a href="#settings"><i class="fas fa-cog"></i> Settings</a>
+                            <a href="#logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <nav class="sidebar-nav">
+            <ul class="sidebar-menu">
+                <li><a href="#dashboard" class="active" data-section="dashboard">
+                    <i class="fas fa-tachometer-alt"></i> Dashboard
+                </a></li>
+                <li><a href="#classes" data-section="classes">
+                    <i class="fas fa-chalkboard-teacher"></i> My Classes
+                </a></li>
+                <li><a href="#attendance" data-section="attendance">
+                    <i class="fas fa-users"></i> Live Attendance
+                </a></li>
+                <li><a href="#qr-generator" data-section="qr-generator">
+                    <i class="fas fa-qrcode"></i> QR Generator
+                </a></li>
+                <li><a href="#analytics" data-section="analytics">
+                    <i class="fas fa-chart-bar"></i> Analytics
+                </a></li>
+                <li><a href="#students" data-section="students">
+                    <i class="fas fa-user-graduate"></i> Students
+                </a></li>
+                <li><a href="#reports" data-section="reports">
+                    <i class="fas fa-file-alt"></i> Reports
+                </a></li>
+                <li><a href="#settings" data-section="settings">
+                    <i class="fas fa-cog"></i> Settings
+                </a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Dashboard Section -->
+        <section id="dashboard-section" class="content-section active">
+            <div class="dashboard-header">
+                <h1 class="dashboard-title">Faculty Dashboard</h1>
+                <p class="dashboard-subtitle">Welcome back! Here's what's happening in your classes today.</p>
+            </div>
+
+            <!-- Stats Cards -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: rgba(37, 99, 235, 0.2); color: #2563eb;">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </div>
+                    <div class="stat-value" id="totalClasses">8</div>
+                    <div class="stat-label">Total Classes</div>
+                    <div class="stat-change change-positive">
+                        <i class="fas fa-arrow-up"></i> 2 new this semester
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: rgba(16, 185, 129, 0.2); color: #10b981;">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-value" id="totalStudents">247</div>
+                    <div class="stat-label">Total Students</div>
+                    <div class="stat-change change-positive">
+                        <i class="fas fa-arrow-up"></i> +12% from last semester
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: rgba(245, 158, 11, 0.2); color: #f59e0b;">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="stat-value" id="avgAttendance">84.2%</div>
+                    <div class="stat-label">Average Attendance</div>
+                    <div class="stat-change change-negative">
+                        <i class="fas fa-arrow-down"></i> -2.1% from last week
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: rgba(239, 68, 68, 0.2); color: #ef4444;">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <div class="stat-value" id="atRiskStudents">12</div>
+                    <div class="stat-label">At-Risk Students</div>
+                    <div class="stat-change change-negative">
+                        <i class="fas fa-arrow-up"></i> +3 this week
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charts Section - REMOVED TO FIX MEMORY LEAK -->
+            <div style="background: var(--card-bg); border: 1px solid var(--border-color); border-radius: var(--border-radius); padding: 2rem; margin-bottom: 2rem; text-align: center;">
+                <h3 style="color: var(--text-light); margin-bottom: 1rem;">📊 Analytics Dashboard</h3>
+                <p style="color: var(--text-gray); margin-bottom: 1.5rem;">Charts have been temporarily disabled to improve performance and prevent memory issues.</p>
+                <div style="background: rgba(59, 130, 246, 0.1); padding: 1rem; border-radius: 8px; border: 1px solid rgba(59, 130, 246, 0.2);">
+                    <p style="color: #93c5fd; font-size: 0.9rem;">
+                        <i class="fas fa-info-circle"></i> 
+                        We're working on optimized charting solutions. Your attendance data is still being tracked normally.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Today's Classes -->
+            <div class="classes-section">
+                <div class="section-header">
+                    <h3 class="section-title">Today's Classes</h3>
+                    <button class="btn btn-primary" id="createClassBtn">
+                        <i class="fas fa-plus"></i> New Class
+                    </button>
+                </div>
+                <div class="classes-grid" id="todayClasses">
+                    <!-- Classes will be loaded here -->
+                </div>
+            </div>
+
+            <!-- Recent Activity -->
+            <div class="activity-section">
+                <div class="section-header">
+                    <h3 class="section-title">Recent Activity</h3>
+                    <a href="#" class="btn btn-outline">View All</a>
+                </div>
+                <div class="activity-list" id="recentActivity">
+                    <!-- Activity items will be loaded here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Live Attendance Section -->
+        <section id="attendance-section" class="content-section">
+            <div class="section-header">
+                <h2>Live Attendance Monitoring</h2>
+                <div class="attendance-controls">
+                    <div class="search-box">
+                        <input type="text" id="studentSearch" placeholder="Search students...">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <select id="classFilter" class="filter-select">
+                        <option value="">All Classes</option>
+                    </select>
+                    <select id="statusFilter" class="filter-select">
+                        <option value="">All Status</option>
+                        <option value="present">Present</option>
+                        <option value="absent">Absent</option>
+                        <option value="late">Late</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="attendance-summary">
+                <div class="summary-card">
+                    <div class="summary-icon present">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <div class="summary-info">
+                        <div class="summary-number" id="presentCount">0</div>
+                        <div class="summary-label">Present</div>
+                    </div>
+                </div>
+                <div class="summary-card">
+                    <div class="summary-icon absent">
+                        <i class="fas fa-times"></i>
+                    </div>
+                    <div class="summary-info">
+                        <div class="summary-number" id="absentCount">0</div>
+                        <div class="summary-label">Absent</div>
+                    </div>
+                </div>
+                <div class="summary-card">
+                    <div class="summary-icon late">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="summary-info">
+                        <div class="summary-number" id="lateCount">0</div>
+                        <div class="summary-label">Late</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="attendance-table-container">
+                <table class="attendance-table">
+                    <thead>
+                        <tr>
+                            <th>Student ID</th>
+                            <th>Name</th>
+                            <th>Class</th>
+                            <th>Check-in Time</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="attendanceTableBody">
+                        <!-- Attendance records will be loaded here -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- QR Generator Section -->
+        <section id="qr-generator-section" class="content-section">
+            <div class="section-header">
+                <h2>QR Code Generator</h2>
+                <p>Generate QR codes for your classes</p>
+            </div>
+            <!-- QR generator will be loaded dynamically -->
+        </section>
+
+        <!-- Other sections -->
+        <section id="classes-section" class="content-section">
+            <div class="section-header">
+                <h2>My Classes</h2>
+                <button class="btn btn-primary" id="addClassBtn">
+                    <i class="fas fa-plus"></i> Add New Class
+                </button>
+            </div>
+            <div class="classes-grid" id="allClasses">
+                <!-- All classes will be loaded here -->
+            </div>
+        </section>
+
+        <section id="analytics-section" class="content-section">
+            <h2>Advanced Analytics</h2>
+            <div class="analytics-container">
+                <div class="coming-soon">
+                    <i class="fas fa-chart-area"></i>
+                    <h3>Advanced Analytics Coming Soon</h3>
+                    <p>Detailed insights and reporting features are being developed.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="students-section" class="content-section">
+            <h2>Student Management</h2>
+            <div class="students-container">
+                <div class="coming-soon">
+                    <i class="fas fa-user-graduate"></i>
+                    <h3>Student Management Coming Soon</h3>
+                    <p>Comprehensive student tracking and management features.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="reports-section" class="content-section">
+            <h2>Reports & Export</h2>
+            <div class="reports-container">
+                <div class="coming-soon">
+                    <i class="fas fa-file-export"></i>
+                    <h3>Report Generation Coming Soon</h3>
+                    <p>Export attendance data and generate comprehensive reports.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="settings-section" class="content-section">
+            <h2>Settings</h2>
+            <div class="settings-container">
+                <div class="coming-soon">
+                    <i class="fas fa-cog"></i>
+                    <h3>Settings Panel Coming Soon</h3>
+                    <p>Configure your dashboard preferences and system settings.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modals -->
+    <div id="createClassModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Create New Class</h3>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="createClassForm">
+                    <div class="form-group">
+                        <label for="className">Class Name</label>
+                        <input type="text" id="className" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="classCode">Class Code</label>
+                        <input type="text" id="classCode" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="classTime">Class Time</label>
+                        <input type="time" id="classTime" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="classDuration">Duration (minutes)</label>
+                        <input type="number" id="classDuration" value="90" required>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-outline" id="cancelCreate">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Create Class</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts - NO CHART.JS TO PREVENT MEMORY LEAKS -->
+    <script src="../assets/js/faculty-dashboard.js"></script>
+</body>
+</html>

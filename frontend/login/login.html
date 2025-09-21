@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - ClassFlow</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 25%, #334155 75%, #475569 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .login-container {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 48px 40px;
+            width: 100%;
+            max-width: 480px;
+            box-shadow: 0 32px 64px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .logo {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+        
+        .logo-icon {
+            font-size: 3.5rem;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .logo h1 {
+            font-size: 2.25rem;
+            margin-bottom: 8px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #ffffff, #e2e8f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .logo p {
+            color: #cbd5e1;
+            font-size: 1rem;
+            font-weight: 400;
+        }
+        
+        .form-group {
+            margin-bottom: 24px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            font-size: 14px;
+            color: #f1f5f9;
+        }
+        
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            font-size: 16px;
+            background: rgba(255, 255, 255, 0.05);
+            color: white;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+        
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+            background: rgba(255, 255, 255, 0.08);
+        }
+        
+        .form-group select {
+            cursor: pointer;
+        }
+        
+        .form-group select option {
+            background: #1e293b;
+            color: white;
+        }
+        
+        .form-group input::placeholder {
+            color: #94a3b8;
+        }
+        
+        .login-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .login-btn:hover:not(:disabled) {
+            background: linear-gradient(135deg, #2563eb, #1e40af);
+            transform: translateY(-1px);
+            box-shadow: 0 8px 16px rgba(59, 130, 246, 0.3);
+        }
+        
+        .login-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .demo-accounts {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 16px;
+            padding: 24px;
+            margin-top: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .demo-accounts h3 {
+            margin-bottom: 16px;
+            text-align: center;
+            color: #f1f5f9;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+        
+        .demo-account {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 16px;
+            border-radius: 10px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+        
+        .demo-account:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(59, 130, 246, 0.3);
+            transform: translateY(-1px);
+        }
+        
+        .demo-account:last-child {
+            margin-bottom: 0;
+        }
+        
+        .demo-account h4 {
+            font-size: 14px;
+            margin-bottom: 6px;
+            color: #f1f5f9;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .demo-account p {
+            font-size: 12px;
+            color: #94a3b8;
+            margin: 0;
+            font-family: 'SF Mono', Consolas, monospace;
+        }
+        
+        .message {
+            padding: 14px 16px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 14px;
+            display: none;
+        }
+        
+        .error-message {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            color: #fecaca;
+        }
+        
+        .success-message {
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            color: #a7f3d0;
+        }
+        
+        .back-link {
+            text-align: center;
+            margin-top: 24px;
+        }
+        
+        .back-link a {
+            color: #94a3b8;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+        
+        .back-link a:hover {
+            color: #cbd5e1;
+        }
+        
+        @media (max-width: 480px) {
+            .login-container {
+                padding: 32px 24px;
+                margin: 16px;
+            }
+            
+            .logo h1 {
+                font-size: 2rem;
+            }
+            
+            .logo-icon {
+                font-size: 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="logo">
+            <div class="logo-icon">🎯</div>
+            <h1>ClassFlow</h1>
+            <p>Smart Campus Management</p>
+        </div>
+        
+        <form id="loginForm">
+            <div id="errorMessage" class="message error-message"></div>
+            <div id="successMessage" class="message success-message"></div>
+            
+            <div class="form-group">
+                <label for="userType">Login as:</label>
+                <select id="userType" required>
+                    <option value="">Select User Type</option>
+                    <option value="student">Student</option>
+                    <option value="faculty">Faculty</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" placeholder="Enter your username" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" placeholder="Enter your password" required>
+            </div>
+            
+            <button type="submit" class="login-btn" id="loginBtn">Sign In</button>
+        </form>
+        
+        <div class="demo-accounts">
+            <h3>Demo Accounts</h3>
+            
+            <div class="demo-account" onclick="fillLogin('student', 'student2023', 'password123')">
+                <h4>👨‍🎓 Student Access</h4>
+                <p>Username: student2023 • Password: password123</p>
+            </div>
+            
+            <div class="demo-account" onclick="fillLogin('faculty', 'faculty2023', 'admin123')">
+                <h4>👨‍🏫 Faculty Access</h4>
+                <p>Username: faculty2023 • Password: admin123</p>
+            </div>
+        </div>
+        
+        <div class="back-link">
+            <a href="index.html">← Back to Home</a>
+        </div>
+    </div>
+    
+    <script>
+        const loginForm = document.getElementById('loginForm');
+        const errorMessage = document.getElementById('errorMessage');
+        const successMessage = document.getElementById('successMessage');
+        const loginBtn = document.getElementById('loginBtn');
+        
+        // Demo credentials
+        const credentials = {
+            student: {
+                username: 'student2023',
+                password: 'password123',
+                redirect: 'student-dashboard.html'
+            },
+            faculty: {
+                username: 'faculty2023',
+                password: 'admin123',
+                redirect: 'faculty-dashboard.html'
+            }
+        };
+        
+        function fillLogin(userType, username, password) {
+            document.getElementById('userType').value = userType;
+            document.getElementById('username').value = username;
+            document.getElementById('password').value = password;
+            
+            // Add visual feedback
+            const clickedCard = event.currentTarget;
+            clickedCard.style.background = 'rgba(59, 130, 246, 0.2)';
+            setTimeout(() => {
+                clickedCard.style.background = 'rgba(255, 255, 255, 0.05)';
+            }, 200);
+        }
+        
+        function showMessage(type, message) {
+            const messageEl = type === 'error' ? errorMessage : successMessage;
+            const otherEl = type === 'error' ? successMessage : errorMessage;
+            
+            otherEl.style.display = 'none';
+            messageEl.textContent = message;
+            messageEl.style.display = 'block';
+            
+            setTimeout(() => {
+                messageEl.style.display = 'none';
+            }, 5000);
+        }
+        
+        loginForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const userType = document.getElementById('userType').value;
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value;
+            
+            if (!userType || !username || !password) {
+                showMessage('error', 'Please fill in all fields');
+                return;
+            }
+            
+            loginBtn.disabled = true;
+            loginBtn.textContent = 'Signing in...';
+            
+            // Simulate login delay
+            setTimeout(() => {
+                const userCreds = credentials[userType];
+                
+                if (userCreds && username === userCreds.username && password === userCreds.password) {
+                    // Store session data
+                    sessionStorage.setItem('classflow_user', JSON.stringify({
+                        userType: userType,
+                        username: username,
+                        loginTime: new Date().toISOString(),
+                        displayName: userType === 'student' ? 'Student User' : 'Faculty User'
+                    }));
+                    
+                    showMessage('success', `Welcome! Redirecting to ${userType} dashboard...`);
+                    
+                    setTimeout(() => {
+                        window.location.href = userCreds.redirect;
+                    }, 1000);
+                    
+                } else {
+                    showMessage('error', 'Invalid credentials. Please check your username and password.');
+                    loginBtn.disabled = false;
+                    loginBtn.textContent = 'Sign In';
+                }
+            }, 1000);
+        });
+        
+        // Check if already logged in
+        document.addEventListener('DOMContentLoaded', function() {
+            const userData = sessionStorage.getItem('classflow_user');
+            if (userData) {
+                const user = JSON.parse(userData);
+                const redirectUrl = credentials[user.userType]?.redirect;
+                if (redirectUrl) {
+                    showMessage('success', `Already logged in as ${user.userType}. Redirecting...`);
+                    setTimeout(() => {
+                        window.location.href = redirectUrl;
+                    }, 1000);
+                }
+            }
+            
+            // Check for intended role from main page
+            const intendedRole = sessionStorage.getItem('intended_role');
+            if (intendedRole && credentials[intendedRole]) {
+                document.getElementById('userType').value = intendedRole;
+                sessionStorage.removeItem('intended_role');
+            }
+        });
+    </script>
+</body>
+</html>

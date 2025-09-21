@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code Scanner - ClassFlow</title>
+    <link rel="stylesheet" href="../assets/css/scanner.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>📱 QR Scanner</h1>
+            <p>Scan classroom QR codes to mark attendance</p>
+        </div>
+
+        <!-- User Info -->
+        <div class="user-info">
+            <p>Welcome back,</p>
+            <strong id="userDisplayName">Student</strong>
+        </div>
+
+        <!-- Scanner Section -->
+        <div id="scannerSection" class="scanner-section">
+            <div class="camera-container">
+                <div id="qr-reader"></div>
+                <div class="scanner-overlay">
+                    <div class="scanner-frame"></div>
+                    <div class="scan-instruction">Hold QR code steady in the frame</div>
+                </div>
+            </div>
+
+            <div class="scanner-controls">
+                <button id="startScanner" class="action-btn">
+                    <i class="fas fa-camera"></i> Start Camera
+                </button>
+                <button id="stopScanner" class="action-btn stop" style="display: none;">
+                    <i class="fas fa-stop"></i> Stop Camera
+                </button>
+                <button id="switchCamera" class="action-btn switch" style="display: none;">
+                    <i class="fas fa-sync"></i> Switch Camera
+                </button>
+            </div>
+
+            <div id="cameraStatus" class="camera-status">
+                <p>Click "Start Camera" to begin scanning</p>
+            </div>
+        </div>
+
+        <!-- Result Section -->
+        <div id="resultSection" class="result-section" style="display: none;">
+            <div id="resultCard" class="result-card">
+                <!-- Results will be displayed here -->
+            </div>
+            
+            <button id="scanAgain" class="action-btn scan-again">
+                <i class="fas fa-qrcode"></i> Scan Again
+            </button>
+        </div>
+
+        <!-- Info Section -->
+        <div class="info-section">
+            <h3>How to Use</h3>
+            <ul>
+                <li>Click "Start Camera" to activate the scanner</li>
+                <li>Point your camera at the classroom QR code</li>
+                <li>Hold steady until the code is detected</li>
+                <li>Enter your roll number when prompted</li>
+                <li>Your attendance will be marked automatically</li>
+            </ul>
+        </div>
+
+        <!-- Troubleshooting Section -->
+        <div class="troubleshoot-section">
+            <h4>Having Issues?</h4>
+            <ul>
+                <li>Make sure camera permission is granted</li>
+                <li>Ensure good lighting for better scanning</li>
+                <li>Hold the device steady while scanning</li>
+                <li>Try switching cameras if available</li>
+                <li>Refresh the page if scanner stops working</li>
+            </ul>
+        </div>
+
+        <!-- Quick Test (Development) -->
+        <div id="quickTest" class="quick-test">
+            <h4>Development Test</h4>
+            <button onclick="simulateQRScan()">Simulate QR Scan</button>
+        </div>
+
+        <!-- Back Link -->
+        <div class="back-link">
+            <a href="dashboard.html">
+                <i class="fas fa-arrow-left"></i> Back to Dashboard
+            </a>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <!-- HTML5-QRCode Library from CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.8/html5-qrcode.min.js" 
+            integrity="sha512-r6rDA7W6ZeQhvl8S7yRVQUKVHdexq+GAlNkNNqVC7YyIV+NwqCTJe2hDWCiffTyRNOeGEzRRJ9ifvRm/HCzGYg==" 
+            crossorigin="anonymous" 
+            referrerpolicy="no-referrer"
+            onload="console.log('HTML5-QRCode library loaded successfully')"
+            onerror="console.error('Failed to load HTML5-QRCode library')">
+    </script>
+    
+    <!-- Fallback for HTML5-QRCode -->
+    <script>
+        // Check if library loaded, if not try alternative CDN
+        if (typeof Html5Qrcode === 'undefined') {
+            console.warn('Primary CDN failed, trying alternative...');
+            const script = document.createElement('script');
+            script.src = 'https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js';
+            script.onload = function() {
+                console.log('HTML5-QRCode library loaded from alternative CDN');
+            };
+            script.onerror = function() {
+                console.error('All CDNs failed. QR scanning will not work.');
+                document.getElementById('cameraStatus').innerHTML = 
+                    '<p style="color: #fca5a5;">QR Library failed to load. Please refresh the page.</p>';
+            };
+            document.head.appendChild(script);
+        }
+    </script>
+    
+    <!-- Main Scanner Script -->
+    <script src="../assets/js/scanner.js"></script>
+</body>
+</html>

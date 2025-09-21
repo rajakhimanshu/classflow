@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard - ClassFlow</title>
+    <link rel="stylesheet" href="../assets/css/dashboard.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="logo">
+                <span>🎯</span>
+                ClassFlow Student
+            </div>
+            <div class="user-info">
+                <span>Welcome, <strong id="studentName">Student</strong></span>
+                <div class="user-avatar" id="userAvatar">S</div>
+                <button class="logout-btn" onclick="logout()">Sign Out</button>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="container">
+        <div class="welcome-section">
+            <h1>Student Dashboard</h1>
+            <p>Track your attendance and academic progress</p>
+        </div>
+        
+        <div class="quick-stats">
+            <div class="stat-card">
+                <div class="stat-number" id="attendancePercentage">0%</div>
+                <div class="stat-label">Current Attendance</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="totalClasses">0</div>
+                <div class="stat-label">Total Classes</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="presentDays">0</div>
+                <div class="stat-label">Days Present</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="streakDays">0</div>
+                <div class="stat-label">Current Streak</div>
+            </div>
+        </div>
+        
+        <div class="dashboard-grid">
+            <div class="dashboard-card working" onclick="openAttendanceScanner()">
+                <span class="card-icon">📱</span>
+                <div class="card-title">Mark Attendance</div>
+                <div class="card-description">
+                    Scan QR code to mark your attendance for today's classes
+                </div>
+                <div class="card-status status-working">✅ Working</div>
+            </div>
+            
+            <div class="dashboard-card working" onclick="viewMyAttendance()">
+                <span class="card-icon">📊</span>
+                <div class="card-title">My Attendance</div>
+                <div class="card-description">
+                    View your attendance history and monthly reports
+                </div>
+                <div class="card-status status-working">✅ Working</div>
+            </div>
+            
+            <div class="dashboard-card" onclick="viewProfile()">
+                <span class="card-icon">👤</span>
+                <div class="card-title">My Profile</div>
+                <div class="card-description">
+                    View and update your personal information
+                </div>
+                <div class="card-status status-demo">🎭 Demo</div>
+            </div>
+            
+            <div class="dashboard-card" onclick="viewAssignments()">
+                <span class="card-icon">📝</span>
+                <div class="card-title">Assignments</div>
+                <div class="card-description">
+                    Check assignment deadlines and submission status
+                </div>
+                <div class="card-status status-demo">🎭 Demo</div>
+            </div>
+        </div>
+
+        <div class="recent-activity">
+            <h3>Recent Activity</h3>
+            <div class="activity-list" id="activityList">
+                <div class="activity-item">
+                    <span class="activity-icon">⏱️</span>
+                    <div class="activity-content">
+                        <p>Welcome to ClassFlow!</p>
+                        <small>Just now</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="../assets/js/dashboard.js"></script>
+</body>
+</html>
